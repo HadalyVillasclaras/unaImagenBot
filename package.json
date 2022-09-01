@@ -1,0 +1,20 @@
+{
+  "name": "unaimagenbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HadalyVillasclaras/unaImagenBot.git"
+  },
+  "keywords": [],
+  "author": "Hadaly Villasclaras",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HadalyVillasclaras/unaImagenBot/issues"
+  },
+  "homepage": "https://github.com/HadalyVillasclaras/unaImagenBot#readme"
+}
