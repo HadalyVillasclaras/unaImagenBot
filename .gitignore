@@ -1,5 +1,5 @@
-# Ignora la carpeta node_modules
+# Folders
 texts
 
-# Ignora todos los archivos de texto
-*.txt
+# PDF files
+*.pdf
