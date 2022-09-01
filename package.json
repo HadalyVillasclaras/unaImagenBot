@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/HadalyVillasclaras/unaImagenBot/issues"
   },
-  "homepage": "https://github.com/HadalyVillasclaras/unaImagenBot#readme"
+  "homepage": "https://github.com/HadalyVillasclaras/unaImagenBot#readme",
+  "dependencies": {
+    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^2.16.105"
+  }
 }

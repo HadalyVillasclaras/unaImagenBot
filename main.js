@@ -1,20 +1,13 @@
 const text = require('./text');
-let sentences = createSentences(text);
+console.log("h");
 
-function unaImagenAllSentences(sentences){
-    let unaImagen = 'Una imagen';
-    let unaImagenSentences = [];
-
-    for (const sentence of sentences) {
-        let unaImagenSentence = unaImagen.concat(' ', sentence);
-        unaImagenSentences.push(unaImagenSentence);
-    }
-    return unaImagenSentences;
-}
+//let sentences = createSentences(text);
+console.log(text);
 
 function createSentences(text)
 {
     let sentences = [];
+
     const pattern = '\\b(de|del)\\s([a-záéíóúñ])+\\s([a-záéíóúñ])+';
     let matchedSentences = text.match(new RegExp(pattern, 'g'));
 
@@ -26,7 +19,7 @@ function createSentences(text)
         let secondWord = sentenceSplit[1];
         let thirdWord = sentenceSplit[2];
 
-        const notAllowedSecondWords = [
+        const notAllowedLastWords = [
             "un", 
             "una", 
             "unos", 
@@ -57,7 +50,7 @@ function createSentences(text)
             "que"
         ];
 
-        if (notAllowedSecondWords.includes(secondWord)) {
+        if (notAllowedLastWords.includes(secondWord)) {
             sentences.push(sentence);
         }else{
             let twoWordsSentence = sentence.slice(0, (sentence.indexOf(thirdWord) -1));
@@ -67,6 +60,15 @@ function createSentences(text)
     return sentences;
 }
 
+function unaImagenAllSentences(sentences){
+    let unaImagen = 'Una imagen';
+    let unaImagenSentences = [];
 
+    for (const sentence of sentences) {
+        let unaImagenSentence = unaImagen.concat(' ', sentence);
+        unaImagenSentences.push(unaImagenSentence);
+    }
+    return unaImagenSentences;
+}
 
-module.exports = unaImagenAllSentences(sentences);
+//module.exports = unaImagenAllSentences(sentences);
