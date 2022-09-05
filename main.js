@@ -1,74 +1,75 @@
-const text = require('./text');
-console.log("h");
+let textx = require('./text');
+//console.log(textx("proust_tiempo_perdido.pdf")); 
+typeof textx;
+//let sentences = createSentences(textx);
+//console.log(sentences);
+//console.log(text);
 
-//let sentences = createSentences(text);
-console.log(text);
+// function createSentences(textx)
+// {
+//     let sentences = [];
 
-function createSentences(text)
-{
-    let sentences = [];
+//     const pattern = '\\b(de|del)\\s([a-záéíóúñ])+\\s([a-záéíóúñ])+';
+//     let matchedSentences = textx.match(new RegExp(pattern, 'g'));
 
-    const pattern = '\\b(de|del)\\s([a-záéíóúñ])+\\s([a-záéíóúñ])+';
-    let matchedSentences = text.match(new RegExp(pattern, 'g'));
+//     for (let i = 0; i < matchedSentences.length; i++) {
+//         let sentence = matchedSentences[i];
 
-    for (let i = 0; i < matchedSentences.length; i++) {
-        let sentence = matchedSentences[i];
+//         let sentenceSplit = sentence.split(' ');
+//         let lastPosition = sentenceSplit.length-1;
+//         let secondWord = sentenceSplit[1];
+//         let thirdWord = sentenceSplit[2];
 
-        let sentenceSplit = sentence.split(' ');
-        let lastPosition = sentenceSplit.length-1;
-        let secondWord = sentenceSplit[1];
-        let thirdWord = sentenceSplit[2];
+//         const notAllowedLastWords = [
+//             "un", 
+//             "una", 
+//             "unos", 
+//             "unas", 
+//             "la", 
+//             "el", 
+//             "los", 
+//             "las", 
+//             "tu", 
+//             "mi", 
+//             "su", 
+//             "tus", 
+//             "mis", 
+//             "sus", 
+//             "este",
+//             "esta",
+//             "esto",
+//             "estas",
+//             "estos",
+//             "esa",
+//             "ese",
+//             "esas",
+//             "esos",
+//             "aquel",
+//             "aquella",
+//             "aquellos",
+//             "aquellas",
+//             "que"
+//         ];
 
-        const notAllowedLastWords = [
-            "un", 
-            "una", 
-            "unos", 
-            "unas", 
-            "la", 
-            "el", 
-            "los", 
-            "las", 
-            "tu", 
-            "mi", 
-            "su", 
-            "tus", 
-            "mis", 
-            "sus", 
-            "este",
-            "esta",
-            "esto",
-            "estas",
-            "estos",
-            "esa",
-            "ese",
-            "esas",
-            "esos",
-            "aquel",
-            "aquella",
-            "aquellos",
-            "aquellas",
-            "que"
-        ];
+//         if (notAllowedLastWords.includes(secondWord)) {
+//             sentences.push(sentence);
+//         }else{
+//             let twoWordsSentence = sentence.slice(0, (sentence.indexOf(thirdWord) -1));
+//             sentences.push(twoWordsSentence);
+//         }
+//     }
+//     return sentences;
+// }
 
-        if (notAllowedLastWords.includes(secondWord)) {
-            sentences.push(sentence);
-        }else{
-            let twoWordsSentence = sentence.slice(0, (sentence.indexOf(thirdWord) -1));
-            sentences.push(twoWordsSentence);
-        }
-    }
-    return sentences;
-}
+// function unaImagenAllSentences(sentences){
+//     let unaImagen = 'Una imagen';
+//     let unaImagenSentences = [];
 
-function unaImagenAllSentences(sentences){
-    let unaImagen = 'Una imagen';
-    let unaImagenSentences = [];
+//     for (const sentence of sentences) {
+//         let unaImagenSentence = unaImagen.concat(' ', sentence);
+//         unaImagenSentences.push(unaImagenSentence);
+//     }
+//     return unaImagenSentences;
+// }
 
-    for (const sentence of sentences) {
-        let unaImagenSentence = unaImagen.concat(' ', sentence);
-        unaImagenSentences.push(unaImagenSentence);
-    }
-    return unaImagenSentences;
-}
-
-//module.exports = unaImagenAllSentences(sentences);
+// //module.exports = unaImagenAllSentences(sentences);

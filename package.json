@@ -19,6 +19,7 @@
   "homepage": "https://github.com/HadalyVillasclaras/unaImagenBot#readme",
   "dependencies": {
     "pdf-parse": "^1.1.1",
+    "pdf-to-text": "^0.0.7",
     "pdfjs-dist": "^2.16.105"
   }
 }
