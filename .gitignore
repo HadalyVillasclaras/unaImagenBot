@@ -3,3 +3,6 @@ texts
 
 # PDF files
 *.pdf
+
+# txt files
+*.txt

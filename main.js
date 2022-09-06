@@ -1,10 +1,15 @@
-let fs = require("fs");
-const text = fs.readFileSync('txtFromPdf.txt', 'utf8');
+const fs = require("fs");
+let text;
+let allImagesSentences;
 
-
-
-//let sentences = createSentences(text);
-console.log(findSentences(text));
+try {
+    text = fs.readFileSync('texts/textFromPdf.txt', 'utf8');
+    text = text.replace(/(\r\n|\n|\r)/gm, " ");
+    let sentences = findSentences(text);
+    allImagesSentences = unaImagenAllSentences(sentences);
+}catch (err) {
+    console.error(err);
+}
 
 function findSentences(text)
 {
@@ -26,6 +31,7 @@ function findSentences(text)
             "unas", 
             "la", 
             "el", 
+            "lo",
             "los", 
             "las", 
             "tu", 
@@ -47,7 +53,13 @@ function findSentences(text)
             "aquella",
             "aquellos",
             "aquellas",
-            "que"
+            "que",
+            "tan",
+            "sí",
+            "si",
+            "no",
+            "más"
+            
         ];
 
         if (notAllowedLastWords.includes(secondWord)) {
@@ -71,4 +83,4 @@ function unaImagenAllSentences(sentences){
     return unaImagenSentences;
 }
 
-//module.exports = unaImagenAllSentences(sentences);
+module.exports = allImagesSentences;

@@ -1,6 +1,7 @@
-const unaImagenDeSentences = require('./main');
+const allImagesSentences = require('./main');
 
-let randomNumber = Math.floor(Math.random() * unaImagenDeSentences.length);
-console.log(unaImagenDeSentences[randomNumber]);
+let randomPosition = Math.floor(Math.random() * allImagesSentences.length);
+console.log(allImagesSentences[randomPosition]);
+
 
 
