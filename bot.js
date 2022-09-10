@@ -1,4 +1,3 @@
-
 const config = require('./config.js');
 const Twit = require('twit');
 const twit = new Twit(config);
@@ -7,8 +6,9 @@ const allImagesSentences = require('./buildSentences');
 let randomPosition = Math.floor(Math.random() * allImagesSentences.length);
 let tweet = { status: allImagesSentences[randomPosition] };
 
-setInterval(tweetIt(tweet), 1000 * (86400 * daysInterval(2, 3))); // 24h = 86400secs
+setInterval(() => tweetIt(tweet), daysInterval(2,3)); 
 
+//tweetIt(tweet);
 
 function tweetIt(tweet) 
 {
@@ -19,11 +19,12 @@ function tweetIt(tweet)
         if (err) {
             console.log(err);
         } else {
-            console.log('Tweeted twit: ' + data);
+            console.log('Tweeted!');
         }
     }
 }
 
 function daysInterval(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    let daysInterval = Math.floor(Math.random() * (max - min + 1) + min);
+    return 1000 * (86400 * daysInterval); // 24h = 86400secs
 }
