@@ -24,7 +24,8 @@ function tweetIt(tweet)
     }
 }
 
-function daysInterval(min, max) {
+function daysInterval(min, max) 
+{
     let daysInterval = Math.floor(Math.random() * (max - min + 1) + min);
     return 1000 * (86400 * daysInterval); // 24h = 86400secs
 }
