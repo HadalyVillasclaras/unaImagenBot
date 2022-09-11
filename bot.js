@@ -6,7 +6,8 @@ const allImagesSentences = require('./buildSentences');
 let randomPosition = Math.floor(Math.random() * allImagesSentences.length);
 let tweet = { status: allImagesSentences[randomPosition] };
 
-setInterval(() => tweetIt(tweet), daysInterval(2,3)); 
+setInterval(() => tweetIt(tweet), 300 * 86400); 
+
 
 function tweetIt(tweet) 
 {
