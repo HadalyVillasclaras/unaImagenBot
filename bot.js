@@ -8,7 +8,6 @@ let tweet = { status: allImagesSentences[randomPosition] };
 
 setInterval(() => tweetIt(tweet), 300 * 86400); 
 
-
 function tweetIt(tweet) 
 {
     twit.post('statuses/update', tweet, tweeted);
