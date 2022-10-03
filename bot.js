@@ -1,15 +1,15 @@
 const config = require('./config.js');
 const Twit = require('twit');
 const twit = new Twit(config);
-const allImagesSentences = require('./buildSentences');
+const sentences = require('./buildSentences');
 
-let randomPosition = Math.floor(Math.random() * allImagesSentences.length);
-let tweet = { status: allImagesSentences[randomPosition] };
+setInterval(() => tweetIt(sentences), 300 * 86400); 
 
-setInterval(() => tweetIt(tweet), 300 * 86400); 
-
-function tweetIt(tweet) 
+function tweetIt() 
 {
+    let tweet =  createTweet(sentences);
+    console.log(tweet);
+
     twit.post('statuses/update', tweet, tweeted);
     
     function tweeted(err, data, response) 
@@ -20,6 +20,14 @@ function tweetIt(tweet)
             console.log('Tweeted!');
         }
     }
+}
+
+function createTweet(sentences) 
+{
+    let randomPosition = Math.floor(Math.random() * sentences.length);
+    let tweet = { status: sentences[randomPosition] };
+
+    return tweet;
 }
 
 function daysInterval(min, max) 
