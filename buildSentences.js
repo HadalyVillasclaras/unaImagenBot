@@ -64,10 +64,14 @@ function findSentences(text)
         ];
 
         if (notAllowedLastWords.includes(secondWord)) {
-            sentences.push(sentence);
-        }else{
+            if (!sentences.includes(sentence)) {
+                sentences.push(sentence);
+            }
+        } else {
             sentence = deOrDel + ' ' + secondWord;
-            sentences.push(sentence);
+            if (!sentences.includes(sentence)) {
+                sentences.push(sentence);
+            }
         }
     }
     return sentences;
