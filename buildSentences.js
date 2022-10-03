@@ -1,11 +1,11 @@
 const fs = require("fs");
 let text;
 let allImagesSentences;
-
+let sentences;
 try {
     text = fs.readFileSync('texts/textFromPdf.txt', 'utf8');
     text = text.replace(/(\r\n|\n|\r)/gm, " ");
-    let sentences = findSentences(text);
+    sentences = findSentences(text);
     allImagesSentences = unaImagenAllSentences(sentences);
 }catch (err) {
     console.error(err);
@@ -16,11 +16,12 @@ function findSentences(text)
     let sentences = [];
     const pattern = '\\b(de|del)\\s([a-záéíóúñ])+\\s([a-záéíóúñ])+';
     let matchedSentences = text.match(new RegExp(pattern, 'g'));
-
     for (let i = 0; i < matchedSentences.length; i++) {
         let sentence = matchedSentences[i];
+
         let sentenceSplit = sentence.split(' ');
-        let lastWord = sentenceSplit.length-1;
+        
+        let deOrDel = sentenceSplit[0];
         let secondWord = sentenceSplit[1];
         let thirdWord = sentenceSplit[2];
 
@@ -58,15 +59,15 @@ function findSentences(text)
             "sí",
             "si",
             "no",
-            "más"
+            "cada"
             
         ];
 
         if (notAllowedLastWords.includes(secondWord)) {
             sentences.push(sentence);
         }else{
-            let twoWordsSentence = sentence.slice(0, (sentence.indexOf(thirdWord) -1));
-            sentences.push(twoWordsSentence);
+            sentence = deOrDel + ' ' + secondWord;
+            sentences.push(sentence);
         }
     }
     return sentences;
