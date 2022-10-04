@@ -1,7 +1,7 @@
 const pdfUtil = require('pdf-to-text');
 const fs = require('fs');
 
-const foundFile = fs.readdirSync('texts/');
+const foundFile = fs.readdirSync('../texts/');
 const filePath = '../texts/' + foundFile[1];
 
 pdfUtil.pdfToText(filePath, function(err, text) {
