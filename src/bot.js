@@ -3,7 +3,7 @@ const Twit = require('twit');
 const twit = new Twit(config);
 const sentences = require('./buildSentences');
 
-setInterval(() => tweetIt(sentences), 360000); 
+setInterval(() => tweetIt(sentences), 3600000 * 24); 
 
 function tweetIt() 
 {
