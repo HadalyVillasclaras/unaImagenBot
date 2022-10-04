@@ -8,7 +8,6 @@ setInterval(() => tweetIt(sentences), 300 * 86400);
 function tweetIt() 
 {
     let tweet =  createTweet(sentences);
-    console.log(tweet);
 
     twit.post('statuses/update', tweet, tweeted);
     
