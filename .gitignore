@@ -1,0 +1,6 @@
+src/config.js
+
+*.pdf
+*.txt
+
+node_modules
