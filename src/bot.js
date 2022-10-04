@@ -1,7 +1,7 @@
 const config = require('./config.js');
 const Twit = require('twit');
 const twit = new Twit(config);
-const sentences = require('./src/buildSentences');
+const sentences = require('./buildSentences');
 
 setInterval(() => tweetIt(sentences), 360000); 
 
