@@ -3,14 +3,13 @@ let text;
 let allImagesSentences;
 let sentences;
 try {
-    text = fs.readFileSync('../texts/textFromPdf.txt', 'utf8');
+    text = fs.readFileSync('texts/textFromPdf.txt', 'utf8');
     text = text.replace(/(\r\n|\n|\r)/gm, " ");
     sentences = findSentences(text);
     allImagesSentences = unaImagenAllSentences(sentences);
 }catch (err) {
     console.error(err);
 }
-
 function findSentences(text)
 {
     let sentences = [];
