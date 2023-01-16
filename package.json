@@ -4,7 +4,7 @@
   "description": "A Twitter Bot for tweeting non-visual images",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js",
+    "start": "node src/bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
