@@ -1,6 +1,9 @@
-src/config.js
-
-*.pdf
-*.txt
+ *.txt
+ *.pdf
 
 node_modules
+
+src/config.js
+texts/La_vuelta_al_mundo_en_80_dias_-_Jules_Verne.pdf
+texts/proust_tiempo_perdido.pdf
+texts/textFromPdf.txt
