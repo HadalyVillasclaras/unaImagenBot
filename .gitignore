@@ -1,7 +1,7 @@
 *.txt
- *.pdf
+*.pdf
 
 node_modules
 
 src/config.js
-
+texts/images.js
