@@ -1,10 +1,9 @@
 const fs = require("fs");
-let allImages;
-let sentences;
+let allImages = [];
 
 try {
 	const text = getText();
-	sentences = findSentences(text);
+	const sentences = findSentences(text);
 	allImages = createImages(sentences);
 } catch (err) {
 	console.error(err);
@@ -19,68 +18,69 @@ function getText() {
 
 
 function findSentences(text) {
-	let sentences = [];
-	const pattern = '\\b(de|del)\\s([a-záéíóúñ])+\\s([a-záéíóúñ])+';
-
+	// const pattern = '\\b(de|del)\\s([a-záéíóúñ])+\\s([a-záéíóúñ])+';
+	const pattern = '\\b(de|del)\\s+([a-záéíóúñ]+(?:\\s+[a-záéíóúñ]+)*)(?=[\\s.,;:()¿?¡!-])';
 	let matchedSentences = text.match(new RegExp(pattern, 'g'));
-	for (let i = 0; i < matchedSentences.length; i++) {
-		let sentence = matchedSentences[i];
 
-		let sentenceSplit = sentence.split(' ');
+	const filteredMatchedSentences = matchedSentences.filter(sentence => sentence.length <= 110);
 
-		let deOrDel = sentenceSplit[0];
-		let secondWord = sentenceSplit[1];
-		let thirdWord = sentenceSplit[2];
+	const notAllowedLastWords = [
+		"para",
+		"y",
+		"a",
+		"de",
+		"un",
+		"una",
+		"unos",
+		"unas",
+		"la",
+		"el",
+		"lo",
+		"los",
+		"las",
+		"tu",
+		"mi",
+		"su",
+		"tus",
+		"mis",
+		"sus",
+		"este",
+		"esta",
+		"esto",
+		"estas",
+		"estos",
+		"esa",
+		"ese",
+		"esas",
+		"esos",
+		"aquel",
+		"aquella",
+		"aquellos",
+		"aquellas",
+		"que",
+		"tan",
+		"sí",
+		"si",
+		"no",
+		"cada"
 
-		const notAllowedLastWords = [
-			"un",
-			"una",
-			"unos",
-			"unas",
-			"la",
-			"el",
-			"lo",
-			"los",
-			"las",
-			"tu",
-			"mi",
-			"su",
-			"tus",
-			"mis",
-			"sus",
-			"este",
-			"esta",
-			"esto",
-			"estas",
-			"estos",
-			"esa",
-			"ese",
-			"esas",
-			"esos",
-			"aquel",
-			"aquella",
-			"aquellos",
-			"aquellas",
-			"que",
-			"tan",
-			"sí",
-			"si",
-			"no",
-			"cada"
+	];
 
-		];
+	const sentences = filteredMatchedSentences.reduce((acc, sentence2) => {
+		let words = sentence2.split(" ");
 
-		if (notAllowedLastWords.includes(secondWord)) {
-			if (!sentences.includes(sentence)) {
-				sentences.push(sentence);
-			}
-		} else {
-			sentence = deOrDel + ' ' + secondWord;
-			if (!sentences.includes(sentence)) {
-				sentences.push(sentence);
-			}
+		while(notAllowedLastWords.includes(words[words.length - 1])) {
+			words.pop()
 		}
-	}
+
+		const newSentence = words.join(" ");
+		if (newSentence !== ""){
+			acc.push(newSentence);
+		}
+		return acc;
+	}, []);
+
+
 	return sentences;
 }
 
@@ -92,7 +92,6 @@ function createImages(sentences) {
 		let unaImagenSentence = unaImagen.concat(' ', sentence);
 		allImages.push(unaImagenSentence);
 	}
-	console.log(allImages[4]);
 	return allImages;
 }
 

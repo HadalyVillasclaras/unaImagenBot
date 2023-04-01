@@ -3,23 +3,21 @@ const Twit = require('twit');
 const twit = new Twit(config);
 const images = require('./buildImages.js');
 
-// setInterval(() => tweetIt(sentences), 3600000 * 24); 
-tweetIt(images);
+setInterval(() => tweetIt(sentences), 3600000 * 24); 
 
 function tweetIt() {
     let tweet =  getImage();
 
-    console.log(tweet);
-    // twit.post('statuses/update', { status: tweet }, tweeted);
+    twit.post('statuses/update', { status: tweet }, tweeted);
     
-    // function tweeted(err, data, response) 
-    // {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         console.log('Tweeted!');
-    //     }
-    // }
+    function tweeted(err, data, response) 
+    {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Tweeted!');
+        }
+    }
 }
 
 function getImage() {
