@@ -63,7 +63,6 @@ function findSentences(text) {
 		"si",
 		"no",
 		"cada"
-
 	];
 
 	const sentences = filteredMatchedSentences.reduce((acc, sentence2) => {
