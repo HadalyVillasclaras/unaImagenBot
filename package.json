@@ -14,9 +14,10 @@
   "keywords": [
     "Twitter Bot",
     "non visual",
-    "images"
+    "images",
+    "creative coding"
   ],
-  "author": "Hadaly Villasclaras",
+  "author": "Hadaly Villasclaras", 
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/HadalyVillasclaras/unaImagenBot/issues"
