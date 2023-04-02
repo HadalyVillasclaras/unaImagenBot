@@ -1,5 +1,5 @@
 # Una Imagen Bot⋆｡°✩
-## Una Imagen Bot is a Twitter bot that tweets non-visual images. 
+### Una Imagen Bot is a Twitter bot that tweets non-visual images. 
 Its purpose is for the user to explore their own visual landscape through their imagination. This project proposes a space free of representations and imaginaries already constructed by the media. 
 
 ## How does it works?
