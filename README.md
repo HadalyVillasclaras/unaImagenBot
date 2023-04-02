@@ -4,3 +4,4 @@ Una Imagen Bot is a Twitter bot that tweets non-visual images. Its purpose is fo
 ### How does it works?
 The script reads the provided texts and selects all sentences starting with "de" or "del" to the next non-string char. It then filters the sentence based on whether the last word makes sense in the context of the Spanish spoken language. When it has all the sentences, it joins them to the string "Una imagen" and stores them in an array. The bot randomly selects some of these phrases every so often and tweets them.
 
+<https://twitter.com/unaimagenbot>
