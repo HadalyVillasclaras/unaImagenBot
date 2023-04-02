@@ -8,12 +8,12 @@ The script reads the provided texts and selects all sentences starting with "de"
 
 ```mermaid
 ---
-title: FLOWCHARTS
+title: Diagrama de flujo
 ---
 
-flowchart RL
+flowchart 
 subgraph bot.js 
-direction RL
+direction BT
   A1([start]) --> A2(tweetIt)
   A2 --> A3[["getImage(images)"]]
   A3 --> A4{"isTweeted(tweet)"}
