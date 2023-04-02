@@ -59,7 +59,7 @@ function saveTweetedImgs(tweet) {
 		if (data) {
 			alreadyTweeted = JSON.parse(data);
 		}
-
+		
 		alreadyTweeted.push(tweet);
 
 		fs.writeFile('texts/alreadyTweeted.json', JSON.stringify(alreadyTweeted, null, 2), 'utf-8', (err) => {

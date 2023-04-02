@@ -1,4 +1,5 @@
 const fs = require("fs");
+notAllowedLastWords = require('./notAllowedLastWords.js');
 let allImages = [];
 
 try {
@@ -16,7 +17,6 @@ function getText() {
 	return text;
 }
 
-
 function findSentences(text) {
 	// const pattern = '\\b(de|del)\\s([a-záéíóúñ])+\\s([a-záéíóúñ])+';
 	const pattern = '\\b(de|del)\\s+([a-záéíóúñ]+(?:\\s+[a-záéíóúñ]+)*)(?=[\\s.,;:()¿?¡!-])';
@@ -24,49 +24,8 @@ function findSentences(text) {
 
 	const filteredMatchedSentences = matchedSentences.filter(sentence => sentence.length <= 110);
 
-	const notAllowedLastWords = [
-		"para",
-		"y",
-		"a",
-		"de",
-		"un",
-		"una",
-		"unos",
-		"unas",
-		"la",
-		"el",
-		"lo",
-		"los",
-		"las",
-		"tu",
-		"mi",
-		"su",
-		"tus",
-		"mis",
-		"sus",
-		"este",
-		"esta",
-		"esto",
-		"estas",
-		"estos",
-		"esa",
-		"ese",
-		"esas",
-		"esos",
-		"aquel",
-		"aquella",
-		"aquellos",
-		"aquellas",
-		"que",
-		"tan",
-		"sí",
-		"si",
-		"no",
-		"cada"
-	];
-
-	const sentences = filteredMatchedSentences.reduce((acc, sentence2) => {
-		let words = sentence2.split(" ");
+	const sentences = filteredMatchedSentences.reduce((acc, sentence) => {
+		let words = sentence.split(" ");
 
 		while(notAllowedLastWords.includes(words[words.length - 1])) {
 			words.pop()
