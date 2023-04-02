@@ -8,16 +8,17 @@ const images = require('./buildImages.js');
 setInterval(() => tweetIt(), 86400 * 1000);
 
 function tweetIt() {
-	let tweet = getImage();
+	let tweet = getImage(images);
 
 	isTweeted(tweet)
 		.then((alreadyTweeted) => {
 			if (alreadyTweeted) {
 				console.log('Already tweeted');
+				return
 			} else {
 				console.log(tweet);
 				twit.post('statuses/update', { status: tweet }, tweeted);
-				saveTweetedImgs(tweet);
+				saveTweetedImage(tweet);
 			}
 		})
 		.catch((err) => {
@@ -33,7 +34,7 @@ function tweetIt() {
 	}
 }
 
-function getImage() {
+function getImage(images) {
 	let randomPosition = Math.floor(Math.random() * images.length);
 	let randomImg = images[randomPosition];
 
@@ -45,7 +46,7 @@ function daysInterval(min, max) {
 	return 1000 * (86400 * daysInterval); // 24h = 86400secs
 }
 
-function saveTweetedImgs(tweet) {
+function saveTweetedImage(tweet) {
 	//keep all tweeted images
 	fs.readFile('texts/alreadyTweeted.json', 'utf-8', (err, data) => {
 		if (err) {

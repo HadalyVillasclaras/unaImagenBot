@@ -5,3 +5,34 @@ Una Imagen Bot is a Twitter bot that tweets non-visual images. Its purpose is fo
 The script reads the provided texts and selects all sentences starting with "de" or "del" to the next non-string char. It then filters the sentence based on whether the last word makes sense in the context of the Spanish spoken language. When it has all the sentences, it joins them to the string "Una imagen" and stores them in an array. The bot randomly selects some of these phrases every so often and tweets them.
 
 <https://twitter.com/unaimagenbot>
+
+```mermaid
+---
+title: FLOWCHARTS
+---
+
+flowchart TB
+subgraph bot.js 
+direction BT
+  A1([start]) --> A2(tweetIt)
+  A2 --> A3[["getImage(images)"]]
+  A3 --> A4{"isTweeted(tweet)"}
+  A4-- yes --> A1
+  A4-- no --> A5[/twit.post/]
+  A5 --> A6(saveTweetedImg)
+  A6 --> A7([end])
+  A7 -- "interval" --> A1
+end
+
+subgraph buildImages.js
+direction TB
+  B1([start]) --> B2[/getText/]
+  B2 --> B3[["findSentences(text)"]]
+  B3 --> B4("createImages(sentences)")
+end
+
+
+A3<-->B1
+
+
+````
