@@ -11,9 +11,9 @@ The script reads the provided texts and selects all sentences starting with "de"
 title: FLOWCHARTS
 ---
 
-flowchart TB
+flowchart RL
 subgraph bot.js 
-direction BT
+direction RL
   A1([start]) --> A2(tweetIt)
   A2 --> A3[["getImage(images)"]]
   A3 --> A4{"isTweeted(tweet)"}
