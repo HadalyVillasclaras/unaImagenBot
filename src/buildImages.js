@@ -8,7 +8,7 @@ try {
 	allImages = createImages(sentences);
 } catch (err) {
 	console.error(err);
-}
+} 
 
 function getText() {
 	let text = fs.readFileSync('texts/textFromPdf.txt', 'utf8');
