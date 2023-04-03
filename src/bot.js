@@ -50,7 +50,6 @@ function saveTweetedImage(tweet) {
 	//keep all tweeted images
 	fs.readFile('texts/alreadyTweeted.json', 'utf-8', (err, data) => {
 		if (err) {
-			console.log('jkn');
 			console.error(err);
 			return;
 		}
