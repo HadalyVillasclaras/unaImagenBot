@@ -1,40 +1,31 @@
-const fs = require('fs');
-const Twit = require('twit');
 const config = require('./config.js');
-const twit = new Twit(config);
+const fs = require('fs').promises;
+const path = require('path');
+const { TwitterApi } = require('twitter-api-v2');
+const client = new TwitterApi(config);
 const images = require('./buildImages.js');
 
+tweetIt();
+setInterval(() => tweetIt(), 43200 * 1000);
+async function tweetIt() {
+	let tweet = getImage();
+	try {
+		const alreadyTweeted = await isTweeted(tweet);
 
-setInterval(() => tweetIt(), 86400 * 1000);
-
-function tweetIt() {
-	let tweet = getImage(images);
-
-	isTweeted(tweet)
-		.then((alreadyTweeted) => {
-			if (alreadyTweeted) {
-				console.log('Already tweeted');
-				return
-			} else {
-				console.log(tweet);
-				twit.post('statuses/update', { status: tweet }, tweeted);
-				saveTweetedImage(tweet);
-			}
-		})
-		.catch((err) => {
-			console.error(err);
-		});
-
-	function tweeted(err, data, response) {
-		if (err) {
-			console.log(err);
+		if (alreadyTweeted) {
+			console.log('This tweet has already been posted.');
 		} else {
-			console.log('Tweeted!');
+			// const response = await client.v2.tweet(tweet);
+			console.log(tweet);
+			saveTweetedImgs(tweet);
 		}
+
+	} catch (err) {
+		console.error(err);
 	}
 }
 
-function getImage(images) {
+function getImage() {
 	let randomPosition = Math.floor(Math.random() * images.length);
 	let randomImg = images[randomPosition];
 
@@ -46,50 +37,28 @@ function daysInterval(min, max) {
 	return 1000 * (86400 * daysInterval); // 24h = 86400secs
 }
 
-function saveTweetedImage(tweet) {
-	//keep all tweeted images
-	fs.readFile('texts/alreadyTweeted.json', 'utf-8', (err, data) => {
-		if (err) {
-			console.error(err);
-			return;
-		}
-
-		let alreadyTweeted = [];
-
-		if (data) {
-			alreadyTweeted = JSON.parse(data);
-		}
-		
-		alreadyTweeted.push(tweet);
-
-		fs.writeFile('texts/alreadyTweeted.json', JSON.stringify(alreadyTweeted, null, 2), 'utf-8', (err) => {
-			if (err) {
-				console.error(err);
-				return;
-			}
-			console.log('Twit has been saved');
-		});
-	});
+async function saveTweetedImgs(tweet) {
+	const filePath = path.join(__dirname, '../texts/alreadyTweeted.json');
+	try {
+		const data = await fs.readFile(filePath, 'utf8');
+		const tweets = JSON.parse(data);
+		tweets.push(tweet);
+		await fs.writeFile(filePath, JSON.stringify(tweets, null, 2), 'utf8');
+		console.log('Tweet has been saved.');
+	} catch (err) {
+		console.error(err);
+	}
 }
 
 
-function isTweeted(tweet) {
-	return new Promise((resolve, reject) => {
-		fs.readFile('texts/alreadyTweeted.json', 'utf-8', (err, data) => {
-			if (err) {
-				console.error(err);
-				reject(err);
-				return;
-			}
-
-			let twits = [];
-			if (data) {
-				twits = JSON.parse(data);
-			}
-
-			const alreadyTweeted = twits.includes(tweet);
-
-			resolve(alreadyTweeted);
-		});
-	});
+async function isTweeted(tweet) {
+	const filePath = path.join(__dirname, '../texts/alreadyTweeted.json');
+	try {
+		const data = await fs.readFile(filePath, 'utf8');
+		const tweets = JSON.parse(data);
+		return tweets.includes(tweet);
+	} catch (err) {
+		console.error(err);
+	}
+	return false;
 }
