@@ -5,8 +5,8 @@ const { TwitterApi } = require('twitter-api-v2');
 const client = new TwitterApi(config);
 const images = require('./buildImages.js');
 
-tweetIt();
 setInterval(() => tweetIt(), 43200 * 1000);
+
 async function tweetIt() {
 	let tweet = getImage();
 	try {
@@ -15,8 +15,8 @@ async function tweetIt() {
 		if (alreadyTweeted) {
 			console.log('This tweet has already been posted.');
 		} else {
-			// const response = await client.v2.tweet(tweet);
-			console.log(tweet);
+			const response = await client.v2.tweet(tweet);
+			console.log(response);
 			saveTweetedImgs(tweet);
 		}
 
