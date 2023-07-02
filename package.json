@@ -27,6 +27,7 @@
     "pdf-parse": "^1.1.1",
     "pdf-to-text": "^0.0.7",
     "pdfjs-dist": "^2.16.105",
-    "twit": "^2.2.11"
+    "twit": "^2.2.11",
+    "twitter-api-v2": "^1.15.0"
   }
 }

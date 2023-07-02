@@ -5,21 +5,23 @@ const { TwitterApi } = require('twitter-api-v2');
 const client = new TwitterApi(config);
 const images = require('./buildImages.js');
 
-setInterval(() => tweetIt(), 43200 * 1000);
+tweetIt();
 
 async function tweetIt() {
 	let tweet = getImage();
+	console.log(tweet);
 	try {
 		const alreadyTweeted = await isTweeted(tweet);
-
 		if (alreadyTweeted) {
 			console.log('This tweet has already been posted.');
+			tweetIt();
 		} else {
 			const response = await client.v2.tweet(tweet);
 			console.log(response);
 			saveTweetedImgs(tweet);
+			let delay = daysInterval(2, 4);
+			setTimeout(tweetIt, 3000);
 		}
-
 	} catch (err) {
 		console.error(err);
 	}
@@ -34,6 +36,7 @@ function getImage() {
 
 function daysInterval(min, max) {
 	let daysInterval = Math.floor(Math.random() * (max - min + 1) + min);
+	console.log("Days interval: " + daysInterval);
 	return 1000 * (86400 * daysInterval); // 24h = 86400secs
 }
 

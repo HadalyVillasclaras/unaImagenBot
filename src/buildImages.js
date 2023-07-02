@@ -38,7 +38,6 @@ function findSentences(text) {
 		return acc;
 	}, []);
 
-
 	return sentences;
 }
 
